@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS, Material Theme -->
+    <link rel="stylesheet" href="css/framework7.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/iPicture.css" />
+</head>
+<body>
+    <!-- App root element -->
+    <div id="app">
+        <!-- Statusbar overlay -->
+        <div class="statusbar"></div>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main view-init">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="home" class="page">
+                <!-- Top Navbar -->
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="title">Awesome App</div>
+                    </div>
+                </div>
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="toolbar-inner">
+                        <!-- Toolbar links -->
+                        <a href="#" class="link">Link 1</a>
+                        <a href="#" class="link">Link 2</a>
+                    </div>
+                </div>
+
+                <!-- Scrollable page content -->
+                <div class="page-content">
+                    <div class="block" style="height:1500px; ">aa</div>
+                    <p>Page content goes here</p>
+                    <div class="block-title">Picker with single value</div>
+                    <div class="list no-hairlines-md">
+                        <ul>
+                            <li>
+                                <div class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap">
+                                            <input type="text" placeholder="Your iOS device" readonly="readonly" id="demo-picker-device" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- tips 2 <div class="block-title"><img src='img/123.jpg'/></div>-->
+                    <!-- Link to another page -->
+                    <a href="/about/">About app</a>
+                    <p>Page content goes here</p>
+
+
+
+                    <div id="iPicture" data-interaction="click" style="height:500px;">
+                        <div class="ip_slide">
+                             
+                           <img class="ip_tooltipImg" src="images/mypic.jpg" />
+                             <div class="ip_img32" style="top: 100px; left: 80px;padding:0;position:absolute;"  data-button="moreblue" data-tooltipbg="bgblack" 
+                                 data-animationtype="btt-slide" ><div class="roundBgW"></div><div class="roundBgWIn"></div><div class="roundBgWInner"></div></div>
+                             <div class="ip_tooltip ip_img32" style="top: 330px; left: 418px;" data-button="moreblue" data-tooltipbg="bgblack" 
+                                 data-round="roundBgWInner" data-animationtype="btt-slide">
+                                <p>
+                                    <b>一艘潜艇</b><br />
+                                </p>
+                            </div>
+                            <!--
+                            <div class="ip_tooltip ip_img32" style="top: 60px; left: 558px;" data-button="moreblue"
+                                 data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="rtl-slide">
+                                <p>
+                                    <img src="images/s1.jpg" alt="">
+                                </p>
+                            </div>
+                             -->
+                            <div class="ip_tooltip ip_img32" style="top: 260px; left: 228px;" data-button="moreblue"
+                                 data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                                <p>
+                                    <b></b>
+                                    <br />
+                                    有一座桥，全长688米。
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<script type="text/javascript" src="js/cordova.js"></script>-->
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <script src="js/routes.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ipicture.js"></script>
+    <script>
+
+        //app.on("pageInit", function (e, page) {
+        console.log('App initialized');
+        var self = app;
+        // iOS Device picker
+        self.pickerDevice = self.picker.create({
+            inputEl: '#demo-picker-device',
+            cols: [
+              {
+                  textAlign: 'center',
+                  values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6', 'iPhone 6 Plus', 'iPad 2', 'iPad Retina', 'iPad Air', 'iPad mini', 'iPad mini 2', 'iPad mini 3']
+              }
+            ]
+        });
+        //});
+
+
+    </script>
+
+</body>
+<script type="text/javascript">
+    $("#iPicture").iPicture();
+</script>
+</html>
