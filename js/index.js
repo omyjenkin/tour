@@ -1,64 +1,61 @@
 
- 
- // Dom7
-var $ = Dom7;
-
-// Theme
-var theme = 'auto';
-if (document.location.search.indexOf('theme=') >= 0) {
-  theme = document.location.search.split('theme=')[1].split('&')[0];
-}
-
-// Init App
-var app = new Framework7({
-  id: 'io.framework7.testapp',
-  root: '#app',
-  theme: theme,
-  data: function () {
-    return {
-      user: {
-        firstName: 'John',
-        lastName: 'Doe',
-      },
-    };
-  },
-  methods: {
-    helloWorld: function () {
-      app.dialog.alert('Hello World!');
-    },
-  },
-  routes: routes,
-  vi: {
-    placementId: 'pltd4o7ibb9rc653x14',
-  },
-});
-
-/*
-var appc = {
-    // Application Constructor
+var app = {
     initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        this.bindEvents();
     },
-
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+        //addCheckAppUpdateInfo();
+		checkAppUpdate();
     }
 };
 
-appc.initialize();*/
+function addCheckAppUpdateInfo() {
+    $('check').addEventListener("click", checkAppUpdate);
+   
+}
+
+function checkAppUpdate() {
+    var updateUrl = "http://localhost:9998/Update/Version?format=json&jsoncallback=?";
+	 var svrVersion;
+	 $.ajax({
+                type: "GET",
+                url: updateUrl,
+				data:{},
+                dataType: "jsonp",
+                jsonp:"jsoncallback",
+                jsonpCallback:"jsoncallback_success", 
+　　　　　　　　success:function(data){
+				$.each(data,function(index,obj){
+					svrVersion=obj.version;});                 
+                },
+				error:function(XMLHttpRequest, textStatus, errorThrown){
+					
+					alert(textStatus);
+				}
+            });
+    cordova.getAppVersion.getPackageName().then(function (version) {
+    //var versionCode = parseInt(version.toString().replace(/\./g,''));
+    if(svrVersion!=version)
+	$("#dVersion").html("version from server:"+svrVersion+" local version:"+version);
+	});
+	
+	/*
+    var me = this;
+    function onFail() {console.log('fail', JSON.stringify(arguments), arguments);}
+    function onSuccess() {
+        console.log('success', JSON.stringify(arguments), arguments);
+        me.innerHTML+="<br/>request-completed";
+    }*/
+}
+
+/*
+function $(id) {
+    return document.getElementById(id);
+}
+*/
+
+app.initialize();
+
